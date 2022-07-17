@@ -16,7 +16,7 @@ export interface CarouselProps {
 export const Carousel: FC<CarouselProps> = ({
   easing,
   disable = false,
-  duration = 280,
+  duration = 300,
   index,
   onNext,
   onPrev,
