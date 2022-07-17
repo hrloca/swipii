@@ -19,7 +19,6 @@
     "docs:build": "webpack",
     "test": "jest",
     "prepare": "husky install",
-    "postversion": "cp -r package.json dist/",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
