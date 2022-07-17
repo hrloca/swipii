@@ -1,6 +1,6 @@
 {
   "name": "@hrloca/swipii",
-  "version": "0.0.14",
+  "version": "0.0.0-develop",
   "author": "hrloca",
   "license": "MIT",
   "description": "Swipe module for safe scrolling.",
