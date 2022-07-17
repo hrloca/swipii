@@ -105,6 +105,7 @@ const styles: { [key: string]: CSSProperties } = {
     display: 'flex',
   },
   tranck: {
+    backfaceVisibility: 'hidden',
     display: 'flex',
     width: '100%',
   },
