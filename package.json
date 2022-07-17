@@ -1,0 +1,59 @@
+{
+  "name": "@hrloca/swipii",
+  "version": "0.0.14",
+  "author": "hrloca",
+  "license": "MIT",
+  "description": "Swipe module for safe scrolling.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hrloca/swipii.git"
+  },
+  "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "build": "tsc -p ./tsconfig.build.json",
+    "dev": "NODE_ENV=development webpack serve",
+    "prepublish": "npm run build",
+    "docs:build": "webpack",
+    "test": "jest",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@types/jest": "^27.0.1",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@types/webpack": "^5.28.0",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "conventional-changelog": "^3.1.25",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "html-webpack-plugin": "^5.3.2",
+    "husky": "^8.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "semantic-release": "^19.0.3",
+    "ts-jest": "^27.0.5",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  }
+}

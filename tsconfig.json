@@ -1,0 +1,20 @@
+{
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": ["esnext", "esnext.asynciterable", "DOM"],
+    "module": "commonjs",
+    "composite": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest", "node", "react"],
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "jsx": "react"
+  }
+}
