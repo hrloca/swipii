@@ -18,7 +18,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: CleanUp
-        run: ls | grep -v -E 'dist|node_modules|package.json' | xargs rm -rf
+        run: ls | grep -v -E 'dist|node_modules|package.json|README.md' | xargs rm -rf
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
