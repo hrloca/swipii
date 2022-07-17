@@ -18,6 +18,8 @@ jobs:
           scope: '@hrloca'
       - name: Install Dependencies
         run: npm ci
+      - name: Build
+        run: npm build:docs
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
