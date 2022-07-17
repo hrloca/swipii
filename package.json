@@ -4,9 +4,9 @@
   "author": "hrloca",
   "license": "MIT",
   "description": "Swipe module for safe scrolling.",
-  "main": "index.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/hrloca/swipii.git"
