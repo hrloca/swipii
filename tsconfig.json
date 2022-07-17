@@ -1,7 +1,7 @@
 {
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es2015",
     "lib": ["esnext", "DOM"],
     "module": "commonjs",
     "composite": true,
