@@ -1,7 +1,7 @@
 import { Point } from './Point'
 
 export interface GrabbedOption {
-  onGrab?: (offset: Point) => void
+  onGrab?: (offsetFromStart: Point) => void
   onGrabMove?: (offset: Point) => void
   onGrabRelease?: (offset: Point) => void
 }
