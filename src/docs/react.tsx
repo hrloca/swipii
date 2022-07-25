@@ -3,20 +3,23 @@ import { createRoot } from 'react-dom/client'
 import { Carousel, CarouselItem, useIndex } from '../react'
 
 export const CarouselController = ({ data }: { data: any[] }) => {
-  const { length, index, setIndex, next, prev, end, start } = useIndex(data.length, 0)
+  const { state, action } = useIndex(data.length, 0)
 
   return (
     <>
       <div style={impleStyles.container}>
-        <div style={button(start)} onClick={start ? undefined : prev}>
+        <div
+          style={button(state.isStart)}
+          onClick={state.isStart ? undefined : action.prev}
+        >
           {'<'}
         </div>
         <Carousel
           displayWidth="90%"
-          length={length}
-          index={index}
-          onPrev={prev}
-          onNext={next}
+          length={state.length}
+          index={state.index}
+          onPrev={action.prev}
+          onNext={action.next}
         >
           {data.map((_, i) => {
             return (
@@ -26,7 +29,7 @@ export const CarouselController = ({ data }: { data: any[] }) => {
             )
           })}
         </Carousel>
-        <div style={button(end)} onClick={end ? undefined : next}>
+        <div style={button(state.isEnd)} onClick={state.isEnd ? undefined : action.next}>
           {'>'}
         </div>
       </div>
@@ -34,8 +37,11 @@ export const CarouselController = ({ data }: { data: any[] }) => {
       <div style={impleStyles.locator}>
         {data.map((_, i) => (
           <a
-            style={{ ...impleStyles.dot, ...(i === index ? impleStyles.activeDot : {}) }}
-            onClick={() => setIndex(i)}
+            style={{
+              ...impleStyles.dot,
+              ...(i === state.index ? impleStyles.activeDot : {}),
+            }}
+            onClick={() => action.setIndex(i)}
             key={i}
           />
         ))}

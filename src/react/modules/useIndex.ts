@@ -1,16 +1,37 @@
 import { useEffect, useState } from 'react'
 
-export const useIndex = (maxIndex: number, current: number) => {
-  const [index, _setIndex] = useState(current)
-  const [length, setLength] = useState(maxIndex)
-  const end = index >= length - 1
-  const start = index <= 0
+export type useIndexOutput = {
+  state: useIndexState
+  action: useIndexAction
+}
+
+export type useIndexState = {
+  index: number
+  length: number
+  isEnd: boolean
+  isStart: boolean
+}
+
+export type useIndexAction = {
+  setIndex: (next: number) => void
+  next: () => void
+  prev: () => void
+}
+
+export const useIndex = (maxlength: number, initialIndex: number): useIndexOutput => {
+  const [index, _setIndex] = useState(initialIndex)
+  const [length, setLength] = useState(maxlength)
+
+  const isEnd = index >= length - 1
+  const isStart = index <= 0
+
   const next = () => {
-    if (end) return
+    if (isEnd) return
     _setIndex(index + 1)
   }
+
   const prev = () => {
-    if (start) return
+    if (isStart) return
     _setIndex(index - 1)
   }
 
@@ -22,9 +43,21 @@ export const useIndex = (maxIndex: number, current: number) => {
   }
 
   useEffect(() => {
-    setLength(maxIndex)
+    setLength(maxlength)
     _setIndex(0)
-  }, [maxIndex])
+  }, [maxlength])
 
-  return { length, index, setIndex, next, prev, end, start }
+  return {
+    state: {
+      length,
+      index,
+      isEnd,
+      isStart,
+    },
+    action: {
+      setIndex,
+      next,
+      prev,
+    },
+  }
 }
