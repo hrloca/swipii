@@ -109,39 +109,40 @@ export class Swiped {
     const swipableY = this.#useY && angle > this.#ANGLE_THREHOLD
 
     this.#swipeable = swipableX || swipableY
-    // swipe
+
     if (this.#swipeable) {
       this.#currentAxis = swipableX ? 'x' : 'y'
       this.#onGrabbedHandler?.()
     }
   }
 
+  private isPositiveDirection(prev: Point, current: Point, axis: Axis) {
+    const diff = current.abs.sub(prev.abs)
+    const diffValue = diff[axis]
+    return diffValue > 0
+  }
+
   private grabMove(offset: Point) {
-    if (this.#swipeable) {
-      if (this.#currentAxis === 'unknown') return
+    if (!this.#swipeable || this.#currentAxis === 'unknown') return
+    const axis = this.#currentAxis
+    const prev = this.#offset
+    const current = offset
+    const currentValue = current.abs[axis]
 
-      const prevPointAbs = this.#offset.abs
-      const currentPointAbs = offset.abs
-      const diff = currentPointAbs.sub(prevPointAbs)
+    if (this.isPositiveDirection(prev, current, axis)) this.#maxValue = currentValue
 
-      const axis = this.#currentAxis
-      const currentValue = currentPointAbs[axis]
-      const currentDiff = diff[axis]
+    const isOverSwipeableLimit = this.#SWIPE_BORDER_THRESHOLD < currentValue
+    const withinRange = this.#maxValue < currentValue + this.#RELEASE_THRESHOLD
+    const willEmitSwipe = isOverSwipeableLimit && withinRange
 
-      const shouldIncrease = currentDiff > 0
-      if (shouldIncrease) this.#maxValue = currentValue
+    this.#willEmitSwipe = willEmitSwipe
+    this.#offset = offset
 
-      const isOverSwipeableLimit = this.#SWIPE_BORDER_THRESHOLD < currentValue
-      const withinRange = this.#maxValue < currentValue + this.#RELEASE_THRESHOLD
-      this.#willEmitSwipe = isOverSwipeableLimit && withinRange
-      this.#offset = offset
-
-      this.#onGrabbedMoveHandler?.({
-        offset: this.#offset,
-        axis: this.#currentAxis,
-        willEmitSwipe: this.#willEmitSwipe,
-      })
-    }
+    this.#onGrabbedMoveHandler?.({
+      offset: this.#offset,
+      axis: this.#currentAxis,
+      willEmitSwipe: this.#willEmitSwipe,
+    })
   }
 
   private grabRelease() {

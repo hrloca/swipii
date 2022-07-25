@@ -49,7 +49,7 @@ export class Grabbed {
     this.#startPoint = fromTheReferencePoint
   }
 
-  move(point: Point, threshold: number): void {
+  move(point: Point, threshold = 0): void {
     if (!this.#startPoint) return
     const offset = point.sub(this.#startPoint)
 
